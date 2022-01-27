@@ -2,7 +2,7 @@ import React from 'react';
 
 function App() {
   return (
-    <div style={{ fontFamily: 'Montserrat' }}>
+    <div>
       App Placeholder
     </div>
   );
