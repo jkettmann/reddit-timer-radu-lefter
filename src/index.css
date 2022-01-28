@@ -1,0 +1,14 @@
+@import '~@csstools/normalize.css'; /* bring in normalize.css styles */
+
+/* rest of app styles */
+
+@import 'typeface-montserrat';
+
+*{
+    font-family: 'Montserrat';
+    background-color: #f0e7e7;
+    font-size: 16px;
+}
+
+
+
