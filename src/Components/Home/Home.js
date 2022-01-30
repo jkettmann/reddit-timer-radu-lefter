@@ -8,7 +8,7 @@ function Home() {
     <div>
       <Header />
       <h1>This is the home page</h1>
-      <Link to="search">Click to view our search page</Link>
+      <Link to="/search/javascript">Click to view our search page</Link>
       <h1>
         No reactions to your reddit posts?
       </h1>
