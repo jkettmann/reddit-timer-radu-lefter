@@ -4,6 +4,7 @@ import Home from '../Home/Home';
 import Search from '../Search/Search';
 import { ReactComponent as Logo } from '../Header/logo.svg';
 
+
 function App() {
   return (
     <div className="App">
