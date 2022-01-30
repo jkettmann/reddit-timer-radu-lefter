@@ -32,7 +32,8 @@ function Home() {
           About
         </h3>
       </div>
-
+      <h1>This is the home page</h1>
+      <Link to="search">Click to view our search page</Link>
     </div>
   );
 }
