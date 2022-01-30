@@ -1,9 +1,9 @@
 import describeOnBranches from '../utils/describeOnBranches';
 
 describeOnBranches('header')('Header', () => {
-  beforeEach(() => {
-    cy.visit('/#some-hash');
-  });
+  // beforeEach(() => {
+  //   cy.visit('/#some-hash');
+  // });
 
   it('Uses <header> tag', () => {
     cy.get('header');
