@@ -6,9 +6,13 @@
 
 *{
     font-family: 'Montserrat';
-    background-color: #f0e7e7;
+    background-color: #ffffff;
     font-size: 16px;
 }
+
+body {
+    margin: 0;
+  }
 
 
 
