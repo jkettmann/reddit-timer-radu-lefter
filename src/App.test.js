@@ -1,7 +1,26 @@
+// import React from 'react';
+// import { render } from '@testing-library/react';
+// import App from './Components/App/App';
+
+// test('renders App', () => {
+//   render(<App />);
+// });
+
 import React from 'react';
-import { render } from '@testing-library/react';
+// import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './Components/App/App';
 
-test('renders App', () => {
-  render(<App />);
+describe('Header', () => {
+  test('"How it works" link points to the correct page', () => {
+    render(
+      <App />,
+    );
+    const link = screen.getByRole('link', { name: /how it works/i });
+    userEvent.click(link);
+    expect(
+      screen.getByRole('heading', { name: /how it works/i }),
+    ).toBeInTheDocument();
+  });
 });
