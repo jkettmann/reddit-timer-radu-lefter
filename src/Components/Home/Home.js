@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import styles from './Home.module.css';
@@ -18,16 +18,20 @@ function Home() {
         </div>
         <br />
         <br />
-        <button type="button" className={styles.button}>
-          SHOW ME THE BEST TIME
-        </button>
+        <Link to="/search/javascript">
+          <button type="button" className={styles.button}>
+            SHOW ME THE BEST TIME
+          </button>
+        </Link>
         <br />
         <p>
           r/javascript
         </p>
         <br />
         <br />
-        <img src={table} alt="main table" />
+        <Link to="/search/javascript">
+          <img src={table} alt="main table" />
+        </Link>
         <section id="how-it-works">
           <h2>
             How it works
