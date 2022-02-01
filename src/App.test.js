@@ -24,3 +24,16 @@ describe('Header', () => {
     ).toBeInTheDocument();
   });
 });
+
+describe('Footer', () => {
+  test('"Logo" link points to the correct page', () => {
+    render(
+      <App />,
+    );
+    const link = screen.getByRole('link', { name: /logo.svg/i });
+    userEvent.click(link);
+    expect(
+      screen.getByRole('heading', { name: /No reactions to your reddit posts/i }),
+    ).toBeInTheDocument();
+  });
+});
