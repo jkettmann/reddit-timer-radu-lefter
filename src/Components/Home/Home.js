@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import table from './table.png';
 
 function Home() {
@@ -32,6 +33,7 @@ function Home() {
           About
         </h3>
       </div>
+      <Footer />
     </div>
   );
 }
