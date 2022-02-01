@@ -23,6 +23,7 @@ describe('Header', () => {
       screen.getByRole('heading', { name: /how it works/i }),
     ).toBeInTheDocument();
   });
+
 });
 
 describe('Footer', () => {
@@ -36,4 +37,5 @@ describe('Footer', () => {
       screen.getByRole('heading', { name: /No reactions to your reddit posts/i }),
     ).toBeInTheDocument();
   });
+
 });
