@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from './logo2.svg';
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <Link to="https://profy.dev/employers" className={styles.link1}>profy.dev</Link>
+      <a href="https://profy.dev/employers" className={styles.link1}>profy.dev</a>
       <Link to="/"><Logo /></Link>
       <Link to="/terms" className={styles.link2}>Terms & Privacy</Link>
     </footer>
