@@ -37,3 +37,17 @@ describe('Footer', () => {
     ).toBeInTheDocument();
   });
 });
+
+describe('searchButton', () => {
+  test('Button sends user to the search page', () => {
+    render(
+      <App />,
+    );
+    const link = screen.getByRole('link', { name: /show me the best time/i });
+    screen.debug(link);
+    userEvent.click(link);
+    expect(
+      screen.getByRole('heading', { name: /Find the best time for a subreddit/i }),
+    ).toBeInTheDocument();
+  });
+});

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function Search() {
   return (
     <div>
       <Header />
-      <h1>This is the Search page</h1>
-      <Link to="/">Click to view our Home page</Link>
+      <h1>Find the best time for a subreddit</h1>
+      <Footer />
     </div>
   );
 }
