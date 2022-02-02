@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import styles from './Home.module.css';
+import Footer from '../Footer/Footer';
 import table from './table.png';
 
 function Home() {
@@ -43,6 +44,7 @@ function Home() {
           </h2>
         </section>
       </div>
+      <Footer />
       <Footer />
     </div>
   );
