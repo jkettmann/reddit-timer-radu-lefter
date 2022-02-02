@@ -30,7 +30,7 @@ function Home() {
         <br />
         <br />
         <Link to="/search/javascript">
-          <img src={table} alt="main table" />
+          <img src={table} alt="main table" className={styles.image} />
         </Link>
         <section id="how-it-works">
           <h2>

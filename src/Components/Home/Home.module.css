@@ -38,3 +38,7 @@
     background: rgb(255, 205, 112);
     cursor:pointer;
 }
+
+.image{
+    max-width: 100%;
+}
