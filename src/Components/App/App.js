@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/" element={<Logo />} />
-          <Route path="/search/javascript" element={<Search />} />
+          <Route path="/search/:javascript" element={<Search />} />
         </Routes>
       </Router>
     </div>
