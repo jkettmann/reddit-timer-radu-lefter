@@ -4,9 +4,9 @@
 
 @import 'typeface-montserrat';
 
-*{
+/* *{
     font-family: 'Montserrat';
-}
+} */
 
 body {
     margin: 0;

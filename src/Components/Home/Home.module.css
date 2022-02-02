@@ -1,0 +1,44 @@
+@import 'typeface-bitter';
+@import 'typeface-montserrat';
+
+.title{
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-size: 38px;
+    font-family: 'Bitter', serif;
+}
+
+.subtitle{
+    font-size: 16px;
+    color: rgb(190, 190, 190);
+    letter-spacing: 0.5px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat';
+}
+
+.button{
+    color: white;
+    background-color: rgb(252, 190, 77);
+    border-radius: 5px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-weight:bold;
+    letter-spacing: 1px;
+}
+
+.button:hover{
+    background: rgb(255, 205, 112);
+    cursor:pointer;
+}
+
+.image{
+    max-width: 100%;
+}
