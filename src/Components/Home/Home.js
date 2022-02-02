@@ -58,7 +58,7 @@ function Home() {
             </h2>
             <div>
               This app was created during a course on
-              <a href="https://profy.dev"> ooloo.io </a>
+              <a href="https://profy.dev"> profy.dev </a>
               with the goal
               to implement a pixel-perfect real-world application with professional
               workflows and tools like Kanban, Asana, Zeplin, GitHub, pull requests
