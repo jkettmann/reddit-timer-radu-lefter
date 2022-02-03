@@ -8,41 +8,39 @@ import Footer from '../Footer/Footer';
 
 function Search() {
   const color = 'rgb(252, 190, 77)';
-  const params = useParams();
+  const { subreddit: initialSubreddit } = useParams();
   const navigate = useNavigate();
 
-  const [query, setQuery] = useState(params.javascript);
+  const [subred, setSubred] = useState(initialSubreddit);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    navigate(`/search/${event.target[0].value}`, { replace: true });
-    try {
-      const res = await fetch(`https://www.reddit.com/r/${query}/top.json?t=year&limit=100`, {
-        method: 'GET',
-      });
-      const resJson = await res.json();
-      if (resJson) {
-        setData(resJson);
-        setLoading(false);
-        console.log(data);
-      } else {
-        setError('Some error occured');
-      }
-    } catch (err) {
-      console.log(error);
-    }
+  async function getData(url) {
+    const response = await fetch(url);
+    return response.json().then((fdata) => {
+      setData(fdata);
+      setLoading(false);
+    }).catch((error) => {
+      throw new Error(error);
+    });
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/search/${subred}`);
+    getData(`https://www.reddit.com/r/${subred}/top.json?t=year&limit=100`);
+  };
+
   function handleChange(event) {
-    setQuery(event.target.value);
+    setSubred(event.target.value);
   }
 
   useEffect(() => {
-    setQuery(params.javascript);
-  }, [params]);
+    setSubred(initialSubreddit);
+    getData(`https://www.reddit.com/r/${initialSubreddit}/top.json?t=year&limit=100`);
+  }, [initialSubreddit]);
+
+  console.log(data);
   return (
     <div>
       <Header />
@@ -51,7 +49,7 @@ function Search() {
         <form onSubmit={handleSubmit}>
           <label htmlFor="subred">
             r /
-            <input type="text" id="subred" name="subred" value={query} className={styles.input} onChange={handleChange} />
+            <input type="text" id="subred" name="subred" value={subred} className={styles.input} onChange={handleChange} />
           </label>
           <button type="submit" className={styles.button}>SEARCH</button>
         </form>
