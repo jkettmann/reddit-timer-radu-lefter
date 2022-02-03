@@ -1,11 +1,13 @@
 import { useEffect, useState, React } from 'react';
 // import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
 import styles from './Search.module.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function Search() {
+  const color = 'rgb(252, 190, 77)';
   const params = useParams();
   const navigate = useNavigate();
 
@@ -41,13 +43,11 @@ function Search() {
   useEffect(() => {
     setQuery(params.javascript);
   }, [params]);
-
   return (
     <div>
       <Header />
       <div className={styles.main}>
         <h1>Find the best time for a subreddit</h1>
-        {loading && <h3>Loading data</h3>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="subred">
             r /
@@ -55,6 +55,7 @@ function Search() {
           </label>
           <button type="submit" className={styles.button}>SEARCH</button>
         </form>
+        {loading && <ClipLoader color={color} loading={loading} size={100} speedMultiplier={0.5} />}
       </div>
       <Footer />
     </div>
