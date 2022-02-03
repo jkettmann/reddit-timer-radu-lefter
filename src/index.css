@@ -4,9 +4,17 @@
 
 @import 'typeface-montserrat';
 
-/* *{
-    font-family: 'Montserrat';
-} */
+
+h1 {
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-size: 38px;
+    font-family: 'Bitter', serif;
+}
+
+a {
+    text-decoration:none;
+}
 
 a{
     text-decoration:none;

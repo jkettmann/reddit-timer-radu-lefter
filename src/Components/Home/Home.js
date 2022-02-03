@@ -10,7 +10,7 @@ function Home() {
     <div>
       <Header />
       <div className={styles.main}>
-        <h1 className={styles.title}>
+        <h1>
           No reactions to your reddit posts?
         </h1>
         <div className={styles.subtitle}>

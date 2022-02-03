@@ -1,14 +1,6 @@
 @import 'typeface-bitter';
 @import 'typeface-montserrat';
 
-.title{
-    letter-spacing: 1px;
-    font-weight: normal;
-    font-size: 38px;
-    font-family: 'Bitter', serif;
-}
-
-
 .subtitle > div{
     font-size: 16px;
     color: rgb(165, 165, 165);
