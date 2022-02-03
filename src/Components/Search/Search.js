@@ -8,11 +8,30 @@ import Footer from '../Footer/Footer';
 function Search() {
   const params = useParams();
   const navigate = useNavigate();
-  const [query, setQuery] = useState(params.javascript);
 
-  function handleSubmit(event) {
+  const [query, setQuery] = useState(params.javascript);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  async function handleSubmit(event) {
     event.preventDefault();
     navigate(`/search/${event.target[0].value}`, { replace: true });
+    try {
+      const res = await fetch(`https://www.reddit.com/r/${query}/top.json?t=year&limit=100`, {
+        method: 'GET',
+      });
+      const resJson = await res.json();
+      if (resJson) {
+        setData(resJson);
+        setLoading(false);
+        console.log(data);
+      } else {
+        setError('Some error occured');
+      }
+    } catch (err) {
+      console.log(error);
+    }
   }
 
   function handleChange(event) {
@@ -28,6 +47,7 @@ function Search() {
       <Header />
       <div className={styles.main}>
         <h1>Find the best time for a subreddit</h1>
+        {loading && <h3>Loading data</h3>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="subred">
             r /
