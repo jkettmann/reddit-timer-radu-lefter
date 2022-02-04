@@ -70,7 +70,7 @@ function Search() {
     fetchData(initialSubreddit);
   }, [initialSubreddit, fetchData]);
 
-  // console.log(posts);
+  console.log(posts);
   return (
     <div>
       <Header />
@@ -85,7 +85,6 @@ function Search() {
         </form>
         {loading && <ClipLoader color={color} loading={loading} size={100} speedMultiplier={0.5} />}
       </div>
-      {posts[0].data.author}
       <Footer />
     </div>
   );
