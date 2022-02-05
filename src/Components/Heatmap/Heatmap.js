@@ -2,52 +2,56 @@ import React from 'react';
 import styles from './Heatmap.module.css';
 
 function Heatmap({ data }) {
-//   const myObj = {
-//     Sun: {},
-//     Mon: {},
-//     Tue: {},
-//     Wed: {},
-//     Thu: {},
-//     Fri: {},
-//     Sat: {},
-//   };
-
   const myData = (posts) => {
     const myObj = [
       {
-        day: 'Sun',
-        times: [],
+        day: 'Sunday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Mon',
-        times: [],
+        day: 'Monday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Tue',
-        times: [],
+        day: 'Tuesday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Wed',
-        times: [],
+        day: 'Wednesday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Thu',
-        times: [],
+        day: 'Thursday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Fri',
-        times: [],
+        day: 'Friday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
       {
-        day: 'Sat',
-        times: [],
+        day: 'Saturday',
+        times: [null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null,
+          null, null, null, null, null, null, null, null],
       },
     ];
     posts.forEach((post) => {
       let hour = new Date(post.data.created * 1000).toString().slice(16, 18);
       hour = Number.parseInt(hour, 10);
       const day = new Date(post.data.created * 1000).toString().slice(0, 3);
-      const obj = myObj.find((o) => o.day === day);
+      const obj = myObj.find((o) => o.day.slice(0, 3) === day);
       if (!obj.times[hour]) {
         obj.times[hour] = [];
       }
@@ -90,7 +94,7 @@ function Heatmap({ data }) {
   console.log(myData(data));
   return (
     <div className={styles.main}>
-      <div>
+      <div className={styles.hours}>
         <span>12:00am</span>
         <span>2:00am</span>
         <span>4:00am</span>
@@ -104,68 +108,23 @@ function Heatmap({ data }) {
         <span>8:00pm</span>
         <span>10:00pm</span>
       </div>
-      <div>
+      <div className={styles.heatmap}>
         <table>
           <tbody>
-            {/* {data && data.map((post) => (
-              <tr key={post.data.id}>
-                <td>{new Date(post.data.created * 1000).toString()}</td>
-              </tr>
-            ))} */}
-            {/* {data && myData(data).map((day) => (
+            {data && myData(data).map((day) => (
               <tr>
-                <td>Saturday</td>
-                <td>{Object.size(day.Sat[0])}</td>
-              </tr>
-            ))} */}
-            {/* {Object.keys(myData(data)).map((day) => (
-              <tr>
-                <td>{day}</td>
-                {console.log(day)}
-                {Object.keys(day).map((time) => (
-                  <td>{time[0]}</td>
+                <td className={styles.days}>{day.day}</td>
+                {day.times.map((time) => (
+                  <td>{time ? time.length : 0 }</td>
                 ))}
               </tr>
-            ))} */}
+            ))}
           </tbody>
-          {/* <tbody>
-            <tr>
-              <td>
-                Sunday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Monday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Tuesday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Wednesday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Thursday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Friday
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Saturday
-              </td>
-            </tr>
-          </tbody> */}
         </table>
+      </div>
+      <div className={styles.locale}>
+        All times are shown in your timezone:
+        <strong>{Intl.DateTimeFormat().resolvedOptions().timeZone}</strong>
       </div>
     </div>
   );
