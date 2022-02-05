@@ -7,6 +7,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import styles from './Search.module.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Heatmap from '../Heatmap/Heatmap';
 
 function Search() {
   const color = 'rgb(252, 190, 77)';
@@ -27,7 +28,7 @@ function Search() {
     const allPosts = prevPosts.concat(data.children);
 
     const noMorePosts = data && data.dist < 100;
-    const limitReached = allPosts.length >= 500;
+    const limitReached = allPosts.length >= 100;
     if (noMorePosts || limitReached) {
       setLoading(false);
       return setPosts(allPosts);
@@ -84,6 +85,7 @@ function Search() {
           <button type="submit" className={styles.button}>SEARCH</button>
         </form>
         {loading && <ClipLoader color={color} loading={loading} size={100} speedMultiplier={0.5} />}
+        {posts && <Heatmap data={posts} />}
       </div>
       <Footer />
     </div>
