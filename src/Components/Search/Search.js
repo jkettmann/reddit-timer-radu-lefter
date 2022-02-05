@@ -28,7 +28,7 @@ function Search() {
     const allPosts = prevPosts.concat(data.children);
 
     const noMorePosts = data && data.dist < 100;
-    const limitReached = allPosts.length >= 100;
+    const limitReached = allPosts.length >= 500;
     if (noMorePosts || limitReached) {
       setLoading(false);
       return setPosts(allPosts);
@@ -36,25 +36,6 @@ function Search() {
 
     return fetchData(subreddit, allPosts, data.after);
   }, []);
-
-  // async function getData(subreddit, prevPosts = [], after = null) {
-  //   let url = `https://www.reddit.com/r/${subreddit}/top.json?t=year&limit=100`;
-  //   if (after) {
-  //     url += `&after=${after}`;
-  //   }
-  //   const response = await fetch(url);
-  //   const { data } = await response.json();
-  //   const allPosts = prevPosts.concat(data.children);
-
-  //   const noMorePosts = data && data.dist < 100;
-  //   const limitReached = allPosts.length >= 500;
-  //   if (noMorePosts || limitReached) {
-  //     setLoading(false);
-  //     return setPosts(allPosts);
-  //   }
-
-  //   return getData(subreddit, allPosts, data.after);
-  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,7 +52,6 @@ function Search() {
     fetchData(initialSubreddit);
   }, [initialSubreddit, fetchData]);
 
-  console.log(posts);
   return (
     <div>
       <Header />

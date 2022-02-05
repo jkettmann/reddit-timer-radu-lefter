@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 import styles from './Heatmap.module.css';
 
 function Heatmap({ data }) {
@@ -66,32 +66,10 @@ function Heatmap({ data }) {
         comments: post.data.num_comments,
         id: post.data.id,
       });
-      // myObj[new Date(post.data.created * 1000).toString().slice(0, 3)][hour].push(
-      // {
-      //   day: new Date(post.data.created * 1000).toString().slice(0, 3),
-      //   time: new Date(post.data.created * 1000).toString().slice(16, 21),
-      //   title: post.data.title,
-      //   url: post.data.url,
-      //   author: post.data.author,
-      //   score: post.data.acore,
-      //   comments: post.data.num_comments,
-      //   id: post.data.id,
-      // }
-      // );
-
-    //   myObj.Sunday = {
-    //     day: new Date(post.data.created * 1000).toString().slice(0, 4),
-    //     time: new Date(post.data.created * 1000).toString().slice(16, 22),
-    //     title: post.data.title,
-    //     url: post.data.url,
-    //     author: post.data.author,
-    //     score: post.data.acore,
-    //     comments: post.data.num_comments,
-    //   };
     });
     return myObj;
   };
-  console.log(myData(data));
+  // console.log(myData(data));
   return (
     <div className={styles.main}>
       <div className={styles.hours}>
@@ -115,7 +93,7 @@ function Heatmap({ data }) {
               <tr>
                 <td className={styles.days}>{day.day}</td>
                 {day.times.map((time) => (
-                  <td>{time ? time.length : 0 }</td>
+                  <td className={time && `c${time.length.toString()}`}>{time ? time.length : 0 }</td>
                 ))}
               </tr>
             ))}

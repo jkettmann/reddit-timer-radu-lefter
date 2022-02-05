@@ -51,7 +51,7 @@ table{
     color: white;
 }
 
-.heatmap > table > tbody > tr > td {
+td {
     box-sizing: border-box;
     width: 40px;
     font-size: 14px;
@@ -62,9 +62,13 @@ table{
     background-color: rgb(224, 229, 146);
 }
 
+td:active{
+    border: 1px solid rgb(147, 145, 143);
+}
+
 td:not(:first-child):hover{
     cursor: pointer;
-    border: 1px solid rgb(147, 145, 143);;
+    border: 1px solid rgb(147, 145, 143);
 }
 
 td:focus {
