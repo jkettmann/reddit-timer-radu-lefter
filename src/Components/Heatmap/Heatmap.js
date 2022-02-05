@@ -69,6 +69,7 @@ function Heatmap({ data }) {
     });
     return myObj;
   };
+
   // console.log(myData(data));
   return (
     <div className={styles.main}>
