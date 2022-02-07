@@ -76,11 +76,6 @@ td {
     border: 1px solid rgb(147, 145, 143);
 }
 
-.tableH td:focus {
-    color: red;
-  }
-
-
 .locale{
     margin-top: 12px;
     margin-bottom: 28px;
@@ -88,4 +83,3 @@ td {
     text-align: center;
     color: rgb(147, 145, 143);
 }
-
