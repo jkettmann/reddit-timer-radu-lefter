@@ -7,6 +7,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import styles from './Search.module.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Heatmap from '../Heatmap/Heatmap';
 
 function Search() {
   const color = 'rgb(252, 190, 77)';
@@ -36,25 +37,6 @@ function Search() {
     return fetchData(subreddit, allPosts, data.after);
   }, []);
 
-  // async function getData(subreddit, prevPosts = [], after = null) {
-  //   let url = `https://www.reddit.com/r/${subreddit}/top.json?t=year&limit=100`;
-  //   if (after) {
-  //     url += `&after=${after}`;
-  //   }
-  //   const response = await fetch(url);
-  //   const { data } = await response.json();
-  //   const allPosts = prevPosts.concat(data.children);
-
-  //   const noMorePosts = data && data.dist < 100;
-  //   const limitReached = allPosts.length >= 500;
-  //   if (noMorePosts || limitReached) {
-  //     setLoading(false);
-  //     return setPosts(allPosts);
-  //   }
-
-  //   return getData(subreddit, allPosts, data.after);
-  // }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate(`/search/${subred}`);
@@ -70,7 +52,6 @@ function Search() {
     fetchData(initialSubreddit);
   }, [initialSubreddit, fetchData]);
 
-  console.log(posts);
   return (
     <div>
       <Header />
@@ -84,6 +65,7 @@ function Search() {
           <button type="submit" className={styles.button}>SEARCH</button>
         </form>
         {loading && <ClipLoader color={color} loading={loading} size={100} speedMultiplier={0.5} />}
+        {posts && <Heatmap data={posts} />}
       </div>
       <Footer />
     </div>
