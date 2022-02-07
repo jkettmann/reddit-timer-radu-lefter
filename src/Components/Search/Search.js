@@ -82,7 +82,7 @@ function Search() {
     const allPosts = prevPosts.concat(data.children);
 
     const noMorePosts = data && data.dist < 100;
-    const limitReached = allPosts.length >= 500;
+    const limitReached = allPosts.length >= 100;
     if (noMorePosts || limitReached) {
       setLoading(false);
       // console.log(allPosts);

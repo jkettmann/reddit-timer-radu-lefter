@@ -1,19 +1,33 @@
-import { useState, React } from 'react';
+import { useRef, useState, React } from 'react';
 import styles from './Heatmap.module.css';
 import DetailsTable from '../DetailsTable/DetailsTable';
 
 function Heatmap({ data }) {
   // console.log(data);
+  const table = useRef(null);
   const [clicked, setClicked] = useState(false);
   const [times, setTimes] = useState(null);
   const handleClick = (e) => {
     const day = data.find((o) => o.day === e.target.dataset.day);
     const time = day.times[e.target.dataset.index];
-    time.sort((a, b) => a.time.localeCompare(b.time));
-    // objs.sort((a, b) => a.last_nom.localeCompare(b.last_nom));
+    if (time) { time.sort((a, b) => a.time.localeCompare(b.time)); }
     setTimes(time);
     setClicked(true);
+    for (let i = 0; i < table.current.children[0].children.length; i += 1) {
+      for (let y = 0; y < table.current.children[0].children[i].children.length; y += 1) {
+        table.current.children[0].children[i].children[y].style.border = 'none';
+      }
+    }
+    // table.current.children[0].children \ .style.border = 0;
+    for (let i = 0; i < table.current.children[0].children.length; i += 1) {
+      for (let y = 0; y < table.current.children[0].children[i].children.length; y += 1) {
+        table.current.children[0].children[i].children[y].addEventListener('mouseover', () => { table.current.children[0].children[i].children[y].style.border = '1px solid rgb(147, 145, 143)'; });
+        table.current.children[0].children[i].children[y].addEventListener('mouseleave', () => { table.current.children[0].children[i].children[y].style.border = 'none'; });
+      }
+    }
     e.target.style.border = '1px solid rgb(147, 145, 143)';
+    e.target.addEventListener('mouseleave', () => { e.target.style.border = '1px solid rgb(147, 145, 143)'; });
+    console.log(table.current.children[0].children[0]);
   };
 
   return (
@@ -33,7 +47,7 @@ function Heatmap({ data }) {
         <span>10:00pm</span>
       </div>
       <div className={styles.heatmap}>
-        <table role="grid" className={styles.tableH}>
+        <table role="grid" className={styles.tableH} ref={table}>
           <tbody>
             {data
               && data.map((day, i) => (
