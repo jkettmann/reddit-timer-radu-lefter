@@ -24,7 +24,7 @@ function DetailsTable({ results }) {
                 key={i}
               >
                 <td style={{ textAlign: 'left' }}>
-                  <a href={result.url} target="_blank" rel="noreferrer">
+                  <a href={result.url} target="_blank" rel="noopener noreferrer">
                     {result.title.length <= 50
                       ? result.title
                       : `${result.title.slice(0, 50)}...`}
@@ -33,7 +33,7 @@ function DetailsTable({ results }) {
                 <td>{result.time}</td>
                 <td>{result.score}</td>
                 <td>{result.comments}</td>
-                <td><a href={result.profile} target="_blank" rel="noreferrer">{result.author}</a></td>
+                <td><a href={result.profile} target="_blank" rel="noopener noreferrer">{result.author}</a></td>
               </tr>
             ))}
         </tbody>

@@ -63,7 +63,7 @@ function Search() {
         title: post.data.title,
         url: `https://reddit.com${post.data.permalink}`,
         author: post.data.author,
-        profile: `https://reddit.com/user/${post.data.author}`,
+        profile: `https://reddit.com/u/${post.data.author}`,
         score: post.data.score,
         comments: post.data.num_comments,
         id: post.data.id,
@@ -82,7 +82,7 @@ function Search() {
     const allPosts = prevPosts.concat(data.children);
 
     const noMorePosts = data && data.dist < 100;
-    const limitReached = allPosts.length >= 100;
+    const limitReached = allPosts.length >= 500;
     if (noMorePosts || limitReached) {
       setLoading(false);
       // console.log(allPosts);
