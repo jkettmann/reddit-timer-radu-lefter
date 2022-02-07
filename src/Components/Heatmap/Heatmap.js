@@ -6,14 +6,13 @@ function Heatmap({ data }) {
   // console.log(data);
   const [clicked, setClicked] = useState(false);
   const [times, setTimes] = useState(null);
-  // const [oneDay, setOneDay] = useState('');
   const handleClick = (e) => {
     const day = data.find((o) => o.day === e.target.dataset.day);
     const time = day.times[e.target.dataset.index];
+    time.sort((a, b) => a.time.localeCompare(b.time));
+    // objs.sort((a, b) => a.last_nom.localeCompare(b.last_nom));
     setTimes(time);
     setClicked(true);
-    // console.log(e.target.dataset.user);
-    // console.log(e.target.id);
     e.target.style.border = '1px solid rgb(147, 145, 143)';
   };
 
@@ -34,7 +33,7 @@ function Heatmap({ data }) {
         <span>10:00pm</span>
       </div>
       <div className={styles.heatmap}>
-        <table role="grid" className={styles.table}>
+        <table role="grid" className={styles.tableH}>
           <tbody>
             {data
               && data.map((day, i) => (

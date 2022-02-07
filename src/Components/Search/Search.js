@@ -61,9 +61,10 @@ function Search() {
         day: new Date(post.data.created * 1000).toString().slice(0, 3),
         time: new Date(post.data.created * 1000).toString().slice(16, 21),
         title: post.data.title,
-        url: `reddit.com${post.data.permalink}`,
+        url: `https://reddit.com${post.data.permalink}`,
         author: post.data.author,
-        score: post.data.acore,
+        profile: `https://reddit.com/user/${post.data.author}`,
+        score: post.data.score,
         comments: post.data.num_comments,
         id: post.data.id,
       });
@@ -84,7 +85,7 @@ function Search() {
     const limitReached = allPosts.length >= 100;
     if (noMorePosts || limitReached) {
       setLoading(false);
-      // return setPosts(allPosts);
+      // console.log(allPosts);
       return setPosts(parseData(allPosts));
     }
 
