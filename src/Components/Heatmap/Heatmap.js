@@ -1,76 +1,21 @@
-import { React } from 'react';
+import { useState, React } from 'react';
 import styles from './Heatmap.module.css';
+import DetailsTable from '../DetailsTable/DetailsTable';
 
 function Heatmap({ data }) {
-  const myData = (posts) => {
-    const myObj = [
-      {
-        day: 'Sunday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Monday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Tuesday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Wednesday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Thursday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Friday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-      {
-        day: 'Saturday',
-        times: [null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null,
-          null, null, null, null, null, null, null, null],
-      },
-    ];
-    posts.forEach((post) => {
-      let hour = new Date(post.data.created * 1000).toString().slice(16, 18);
-      hour = Number.parseInt(hour, 10);
-      const day = new Date(post.data.created * 1000).toString().slice(0, 3);
-      const obj = myObj.find((o) => o.day.slice(0, 3) === day);
-      if (!obj.times[hour]) {
-        obj.times[hour] = [];
-      }
-      obj.times[hour].push({
-        ...obj.times[hour],
-        day: new Date(post.data.created * 1000).toString().slice(0, 3),
-        time: new Date(post.data.created * 1000).toString().slice(16, 21),
-        title: post.data.title,
-        url: post.data.url,
-        author: post.data.author,
-        score: post.data.acore,
-        comments: post.data.num_comments,
-        id: post.data.id,
-      });
-    });
-    return myObj;
+  // console.log(data);
+  const [clicked, setClicked] = useState(false);
+  const [times, setTimes] = useState(null);
+  const handleClick = (e) => {
+    const day = data.find((o) => o.day === e.target.dataset.day);
+    const time = day.times[e.target.dataset.index];
+    time.sort((a, b) => a.time.localeCompare(b.time));
+    // objs.sort((a, b) => a.last_nom.localeCompare(b.last_nom));
+    setTimes(time);
+    setClicked(true);
+    e.target.style.border = '1px solid rgb(147, 145, 143)';
   };
 
-  // console.log(myData(data));
   return (
     <div className={styles.main}>
       <div className={styles.hours}>
@@ -88,16 +33,30 @@ function Heatmap({ data }) {
         <span>10:00pm</span>
       </div>
       <div className={styles.heatmap}>
-        <table>
+        <table role="grid" className={styles.tableH}>
           <tbody>
-            {data && myData(data).map((day) => (
-              <tr>
-                <td className={styles.days}>{day.day}</td>
-                {day.times.map((time) => (
-                  <td className={time && `c${time.length.toString()}`}>{time ? time.length : 0 }</td>
-                ))}
-              </tr>
-            ))}
+            {data
+              && data.map((day, i) => (
+                <tr // eslint-disable-next-line react/no-array-index-key
+                  key={i}
+                >
+                  <td className={styles.days}>{day.day}</td>
+                  {day.times.map((time, index) => (
+                    <td
+                      role="gridcell"
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={index}
+                      id={`${day.day}${index}`}
+                      data-day={day.day}
+                      data-index={index}
+                      className={time && `c${time.length.toString()}`}
+                      onClick={handleClick}
+                    >
+                      {time ? time.length : 0}
+                    </td>
+                  ))}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -105,6 +64,7 @@ function Heatmap({ data }) {
         All times are shown in your timezone:
         <strong>{Intl.DateTimeFormat().resolvedOptions().timeZone}</strong>
       </div>
+      <div>{clicked && times && <DetailsTable results={times} />}</div>
     </div>
   );
 }

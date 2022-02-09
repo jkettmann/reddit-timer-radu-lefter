@@ -18,6 +18,60 @@ function Search() {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const parseData = (fetchedPosts) => {
+    const myObj = [
+      {
+        day: 'Sunday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Monday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Tuesday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Wednesday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Thursday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Friday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+      {
+        day: 'Saturday',
+        times: new Array(24).fill(null, 0, 24),
+      },
+    ];
+    fetchedPosts.forEach((post) => {
+      let hour = new Date(post.data.created * 1000).toString().slice(16, 18);
+      hour = Number.parseInt(hour, 10);
+      const day = new Date(post.data.created * 1000).toString().slice(0, 3);
+      const obj = myObj.find((o) => o.day.slice(0, 3) === day);
+      if (!obj.times[hour]) {
+        obj.times[hour] = [];
+      }
+      obj.times[hour].push({
+        day: new Date(post.data.created * 1000).toString().slice(0, 3),
+        time: new Date(post.data.created * 1000).toString().slice(16, 21),
+        title: post.data.title,
+        url: `https://reddit.com${post.data.permalink}`,
+        author: post.data.author,
+        profile: `https://reddit.com/u/${post.data.author}`,
+        score: post.data.score,
+        comments: post.data.num_comments,
+        id: post.data.id,
+      });
+    });
+    return myObj;
+  };
+
   const fetchData = useCallback(async (subreddit, prevPosts = [], after = null) => {
     let url = `https://www.reddit.com/r/${subreddit}/top.json?t=year&limit=100`;
     if (after) {
@@ -31,7 +85,8 @@ function Search() {
     const limitReached = allPosts.length >= 500;
     if (noMorePosts || limitReached) {
       setLoading(false);
-      return setPosts(allPosts);
+      // console.log(allPosts);
+      return setPosts(parseData(allPosts));
     }
 
     return fetchData(subreddit, allPosts, data.after);
