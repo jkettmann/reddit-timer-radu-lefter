@@ -27,7 +27,7 @@ function Heatmap({ data }) {
     }
     e.target.style.border = '1px solid rgb(147, 145, 143)';
     e.target.addEventListener('mouseleave', () => { e.target.style.border = '1px solid rgb(147, 145, 143)'; });
-    console.log(table.current.children[0].children[0]);
+    // console.log(table.current.children[0].children[0]);
   };
 
   return (

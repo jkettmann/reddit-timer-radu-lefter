@@ -119,6 +119,7 @@ function Search() {
           </label>
           <button type="submit" className={styles.button}>SEARCH</button>
         </form>
+        <br />
         {loading && <ClipLoader color={color} loading={loading} size={100} speedMultiplier={0.5} />}
         {posts && <Heatmap data={posts} />}
       </div>

@@ -32,7 +32,7 @@ function Home() {
         <br />
         <br />
         <Link to="/search/javascript">
-          <img src={table} alt="main table" className={styles.image} />
+          <img src={table} alt="main_table" className={styles.image} />
         </Link>
         <section className={styles.section}>
           <article id="how-it-works" className={styles.subtitle}>
